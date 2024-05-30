@@ -14,7 +14,7 @@ name                     : &name "Your Name"
 description              : &description "personal description"
 url                      : https://academicpages.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "academicpages/academicpages.github.io"
+repository               : "https://crqu.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
@@ -27,7 +27,7 @@ author:
   bio              : "Undergrad student at PKU"
   location         : "Beijing, China"
   employer         : 
-  uri              : https://crqu.github.io
+  uri              : #https://crqu.github.io
   email            : qcr2021[AT]stu[DOT]pku[DOT]edu[DOT]cn 
 
   # Academic websites
