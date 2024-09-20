@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2016-01-15 07:59:00-0400
+date: 2024-04-02 07:59:00-0400
 inline: true
 related_posts: false
 ---
 
-A simple inline announcement with Markdown emoji! :sparkles: :smile:
+Happy to share that I received the [Summer Undergraduate Research Fellowships](https://sfp.caltech.edu/undergraduate-research/programs/surf) from Caltech! 
