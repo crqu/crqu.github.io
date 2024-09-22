@@ -6,7 +6,7 @@ subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
 
 profile:
   align: right
-  image: chengrui-round.jpg
+  image: chengrui-round.png
   image_circular: true # crops the image to make it circular
   more_info: >
     <p>5 Yiheyuan Rd, Haidian District</p>
