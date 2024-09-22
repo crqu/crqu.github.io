@@ -9,7 +9,6 @@ profile:
   image: chengrui-round.png
   image_circular: true # crops the image to make it circular
   more_info: >
-    <p>5 Yiheyuan Rd, Haidian District</p>
     <p>Beijing, China 100871</p>
 
 news: true # includes a list of news items
