@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Undergrad at <a href='www.pku.edu.cn'>Peking University</a> 
+subtitle: Undergrad at [Peking University](https://www.pku.edu.cn) 
 
 profile:
   align: right
