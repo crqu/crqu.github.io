@@ -5,6 +5,6 @@ inline: true
 related_posts: false
 ---
 
-Honored to announce that I won the National Scholarship (top 0.3% among all undergrads)!
+Honored to announce that I won the National Scholarship (<b>top 0.3%</b> among all undergrads)!
 
 
