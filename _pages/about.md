@@ -18,7 +18,9 @@ social: false # includes social icons at the bottom of the page
 
 I am a fourth year undergraduate student at [Peking University](https://www.pku.edu.cn) (PKU), where I am fortunate to be advised by [Prof. Pengcheng You](https://pengcheng-you.github.io/desires-lab/). This summer, I worked as a visiting student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). You can find my CV [here](../assets/pdf/cv.pdf).
 
-My research interest include estabilishing theoretical foundations of Reinforcement Learning (RL), designing algorithms for Multi-agent systems and fostering the deployment of Machine Learning tools in the real world.
+<h3>Research Interests</h3>
+
+My research interests include estabilishing theoretical foundations of Reinforcement Learning (RL), designing algorithms for Multi-agent systems and fostering the deployment of Machine Learning tools in the real world.
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
