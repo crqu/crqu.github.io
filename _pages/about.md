@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: <b>Undergrad Student</b> at PKU
+subtitle: <b>Undergraduate Student</b> at PKU
 
 profile:
   align: right
