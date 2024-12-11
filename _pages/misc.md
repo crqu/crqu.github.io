@@ -2,9 +2,11 @@
 layout: page
 permalink: /misc/
 title: Misc
+nav: true
+nav_order: 3
 ---
 
-In my free time, I enjoy snowboarding. Here are a few pictures of me snowboarding. Please let me know if you want to learn more about snowboarding. It's really fun!
+In my free time, I enjoy snowboarding. Here are a few pictures of me and my friends on the slopes or chair lifts. If you’re interested in learning more about snowboarding, feel free to ask — it’s so much fun!
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -15,5 +17,5 @@ In my free time, I enjoy snowboarding. Here are a few pictures of me snowboardin
     </div>
 </div>
 <div class="caption">
-    Me and my friends snowboarding at Thaiwoo, Dec. 2024
+    Me and my friends at Thaiwoo, Dec. 2024
 </div>
