@@ -22,7 +22,7 @@ I am a fourth-year undergraduate student at [Peking University](https://www.pku.
 
 ### Research interests
 
-My research interests lie at the intersection of theoretical foundations for sequential decision-making, algorithm design for multi-agent systems, and advancing optimization techniques to promote sustainability.
+My research interests lie at the intersection of theoretical foundations for sequential decision-making, algorithm design for multi-agent systems, and advancing data-driven optimization for real-world applications.
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 

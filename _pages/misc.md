@@ -43,3 +43,12 @@ In my free time, I enjoy snowboarding. Here are a few pictures of me and my frie
 <div class="caption">
     Sunset at Nanshan, Dec. 2024
 </div>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/snow7.jpg" title="snowboard 3" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    My first time trying to grab the board, and I ended up falling terribly, Jan. 2025
+</div>
