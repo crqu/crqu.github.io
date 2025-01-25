@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Thrilled to announce that our paper Hybrid Transfer Reinforcement Learning: Provable Sample Efficiency From Shifted-dynamics Data was accepted as an <b>oral (top 2%)</b> by AISTATS 2025! 
+Thrilled to announce that our paper Hybrid Transfer Reinforcement Learning: Provable Sample Efficiency From Shifted-dynamics Data was accepted as an <b><span style="color: red;">oral (top 2%)</span></b> by AISTATS 2025! Thanks to my wonderful collaborators！
