@@ -64,3 +64,15 @@ In my free time, I enjoy snowboarding. Here are a few pictures of me and my frie
 <div class="caption">
     Make new friends at Beidahu, Feb. 2025
 </div>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/snow10.jpg" title="snowboard 3" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/snow11.jpg" title="snowboard 4" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Carving at Yunding Snow Park, Feb. 2025
+</div>
