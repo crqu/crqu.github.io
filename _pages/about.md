@@ -18,7 +18,7 @@ social: false # includes social icons at the bottom of the page
 
 ### About me
 
-I am a fourth-year undergraduate student at [Peking University](https://www.pku.edu.cn) (PKU), where I am fortunate to be advised by [Prof. Pengcheng You](https://pengcheng-you.github.io/desires-lab/) in the Department of Industrial Engineering and Management. This summer, I worked as a visiting student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). You can find my CV [here](../assets/pdf/cv-updated.pdf).
+I am a fourth-year undergraduate student at [Peking University](https://www.pku.edu.cn) (PKU), where I am fortunate to be advised by [Prof. Pengcheng You](https://pengcheng-you.github.io/desires-lab/) in the Department of Industrial Engineering and Management. I am also an incoming PhD student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). You can find my CV [here](../assets/pdf/cv.pdf).
 
 ### Research interests
 
