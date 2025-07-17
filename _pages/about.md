@@ -6,10 +6,10 @@ subtitle: <b>Undergraduate Student</b> at PKU
 
 profile:
   align: right
-  image: chengrui-life.jpg
+  image: photo.png
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p> Shot in PKU, 2024 Fall</p>
+    <p> Shot in PKU, 2025 Spring</p>
 
 news: true # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
@@ -18,7 +18,7 @@ social: false # includes social icons at the bottom of the page
 
 ### About me
 
-I am a fourth-year undergraduate student at [Peking University](https://www.pku.edu.cn) (PKU), where I am fortunate to be advised by [Prof. Pengcheng You](https://pengcheng-you.github.io/desires-lab/) in the Department of Industrial Engineering and Management. I am also an incoming PhD student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). You can find my CV [here](../assets/pdf/cv.pdf).
+I am an incoming PhD student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) and [Prof. Eric Mazumdar](https://users.cms.caltech.edu/~mazumdar/) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). You can find my CV [here](../assets/pdf/Chengrui.pdf). Before joining Caltech, I obtained my B.S. degree at Peking University.
 
 ### Research interests
 
