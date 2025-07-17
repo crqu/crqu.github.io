@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: <b>Undergraduate Student</b> at PKU
+subtitle: <b>Incoming PhD Student</b> at Caltech
 
 profile:
   align: right
