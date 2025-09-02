@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: <b>Incoming PhD Student</b> at Caltech
+subtitle: <b>PhD Student</b> at Caltech
 
 profile:
   align: right
@@ -18,11 +18,11 @@ social: false # includes social icons at the bottom of the page
 
 ### About me
 
-I am an incoming PhD student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) and [Prof. Eric Mazumdar](https://users.cms.caltech.edu/~mazumdar/) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). You can find my CV [here](../assets/pdf/Chengrui.pdf). Before joining Caltech, I obtained my B.S. degree at Peking University.
+I am a first-year PhD student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) and [Prof. Eric Mazumdar](https://users.cms.caltech.edu/~mazumdar/) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). You can find my CV [here](../assets/pdf/Chengrui.pdf). Before joining Caltech, I obtained my B.Sc. degree at Peking University.
 
 ### Research interests
 
-My research interests lie at the intersection of theoretical foundations for sequential decision-making, algorithm design for multi-agent systems, and advancing data-driven optimization for real-world applications.
+My research interests lie at the intersection of theoretical foundations for sequential decision-making, robust multi-agent systems, and data-driven optimization for real-world applications.
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
