@@ -22,7 +22,7 @@ I am a first-year PhD student in the [Caltech Rigorous Systems Research Group](h
 
 ### Research interests
 
-My research interests lie at the intersection of theoretical foundations for sequential decision-making, robust multi-agent systems, and data-driven optimization for real-world applications.
+My research interests lie at the intersection of theoretical foundations for sequential decision-making, multi-agent systems, and reasoning abilities of large language models.
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
