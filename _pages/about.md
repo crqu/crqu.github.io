@@ -22,5 +22,5 @@ I am a first-year PhD student in the [Caltech Rigorous Systems Research Group](h
 
 ### Research interests
 
-My research interests lie at the intersection of theoretical foundations for sequential decision-making, multi-agent systems, and the reasoning abilities of large language models, with a strong interest in real-world impact and practical applications. I’m always happy to connect—feel free to reach out if you’d like to discuss research, collaborations, or entrepreneurial opportunities. My email is [cqu[at]caltech[dot]edu].
+My research interests lie at the intersection of theoretical foundations for sequential decision-making, multi-agent systems, and the reasoning abilities of large language models, with a strong interest in real-world impact and practical applications. I’m always happy to connect—feel free to reach out if you’d like to discuss research, collaborations, or entrepreneurial opportunities. My email is cqu[at]caltech[dot]edu.
 
