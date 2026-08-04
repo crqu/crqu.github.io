@@ -139,6 +139,9 @@ lsi: false # produce an index for related posts
 # Pagination
 pagination:
   enabled: true
+  per_page: 10
+  permalink: "/page/:num/"
+  sort_reverse: true
 
 related_blog_posts:
   enabled: false
