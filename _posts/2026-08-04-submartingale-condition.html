@@ -2,7 +2,7 @@
 layout: none
 title: "The Submartingale Condition: When Self-Improvement Actually Improves"
 date: 2026-08-04
-description: "A stochastic process theory of recursive self-improvement, and why the guarantee of improvement naturally degrades under its own success."
+description: "The real challenge of self-improving AI isn't getting the first improvement to work. It's keeping the improvements coming."
 permalink: /blog/2026/submartingale-condition/
 ---
 <!DOCTYPE html>
@@ -331,7 +331,7 @@ permalink: /blog/2026/submartingale-condition/
 
 <header>
   <h1>The Submartingale Condition: When Self-Improvement Actually Improves</h1>
-  <p class="subtitle">A stochastic process theory of recursive self-improvement, and why the guarantee of improvement naturally degrades under its own success.</p>
+  <p class="subtitle">The real challenge of self-improving AI isn't getting the first improvement to work. It's keeping the improvements coming.</p>
   <p class="meta">August 2026</p>
 </header>
 
@@ -340,13 +340,13 @@ permalink: /blog/2026/submartingale-condition/
 <!-- ====== TL;DR ====== -->
 <div class="callout">
   <div class="callout-title">TL;DR</div>
-  <p>A self-improving system is only as good as its ability to tell real improvement from fake improvement. Optimization pressure degrades any imperfect judge&mdash;the system learns to exploit the gap between the verifier's score and true capability. This gives every self-improvement loop <strong>a finite shelf life</strong>. The prescription: periodically measure how well your verifier tracks reality, and stop to recalibrate before the gap destroys your gains.</p>
+  <p>In open-ended self-improvement, any imperfect verifier will eventually be corrupted by the very optimization it guides, and the system's gains will diverge from real capability. The fix: periodically stop and re-align the verifier with ground truth.</p>
 </div>
 
 <!-- ====== Section 1: What is RSI ====== -->
 <h2>What Is Recursive Self-Improvement?</h2>
 
-<p>Recursive self-improvement (RSI) is a system that modifies its own code, architecture, tools, or training procedures, then evaluates the result to decide whether to keep the change. This is distinct from post-training or RLHF, which adjust a fixed model's weights through reward-shaped gradients. In RSI, the system changes <em>what it is</em>, not just how it behaves within a fixed architecture.</p>
+<p>Recursive self-improvement (RSI) is a system that modifies its own code, architecture, tools, or training procedures, then evaluates the result to decide whether to keep the change. This is different from RLHF or fine-tuning, which adjust a fixed model's weights through reward-shaped gradients. In RSI, the system changes <em>what it is</em>, not just how it behaves within a fixed architecture.</p>
 
 <p>Recent RSI systems span a wide range of verification strategies. <strong>AlphaEvolve</strong> (DeepMind), now a production service on Google Cloud since July 2026, discovers faster algorithms that feed back into Google's own infrastructure. In deployment it has reduced Spanner's write amplification by 20%, recovered roughly 0.7% of Google's total compute cycles, and found the first improvement over Strassen's matrix multiplication algorithm in 56 years; external partners such as Klarna have used it to double transformer training throughput. <strong>FunSearch</strong> generates novel mathematical constructions verified by proof checkers. The <strong>Darwin G&ouml;del Machine</strong> (Sakana AI) rewrites its own agent code based on empirical test results, and its hierarchical extension (HGM, ICLR 2026 oral) nests multiple self-modification loops at different levels of abstraction. <strong>AIDE&sup2;</strong> (Weco AI, July 2026) ran recursive self-improvement on its own autoresearch harness for 100 iterations over eight days, discovering seven successive improvements including a novel search algorithm and 16&times; prompt compression; it also spontaneously developed anti-reward-hacking defenses. And <strong>ASI-ARCH</strong> autonomously discovers novel neural attention architectures.</p>
 
@@ -358,15 +358,15 @@ permalink: /blog/2026/submartingale-condition/
 <!-- ====== Section 2: RSI as Stochastic Process ====== -->
 <h2>RSI as a Stochastic Process</h2>
 
-<p>Consider a system running this generate-verify-update loop. At each iteration $t$, it proposes a change to its own code, evaluates whether the change helps, and accepts or rejects it. The outcome of each step is uncertain. The candidate might help, hurt, or have no measurable effect, and the evaluation itself is imperfect.</p>
+<p>Consider a system running this generate-verify-update loop. Each round, it proposes a change to its own code, evaluates whether the change helps, and accepts or rejects it. The outcome is always uncertain. A proposed change might help, hurt, or do nothing. And the system's own judgment about whether the change helped is imperfect too.</p>
 
-<p>This means the system's capability after iteration $t$, call it $C_t$, is a <strong>random variable</strong>. The sequence $C_0, C_1, C_2, \ldots$ forms a <strong>stochastic process</strong>: a random trajectory through capability space, one step at a time.</p>
+<p>So the system's capability after round $t$, call it $C_t$, is a <strong>random variable</strong>. The sequence $C_0, C_1, C_2, \ldots$ forms a <strong>stochastic process</strong>: a random trajectory through capability space, one step at a time.</p>
 
 <p>To characterize this trajectory, we need one concept from probability theory. A stochastic process is a <strong>submartingale</strong> if, at every step, the expected next value is at least as large as the current value:</p>
 
 $$\mathbb{E}[C_{t+1} \mid C_0, C_1, \ldots, C_t] \;\geq\; C_t$$
 
-<p>Think of it as a gambler's edge. In a submartingale, the odds favor you &mdash; you won't win every round, but on average each step moves forward. A <strong>supermartingale</strong> is the reverse (the house always wins), and a <strong>martingale</strong> is a fair game with no drift.</p>
+<p>Think of it as a card counter's edge at blackjack. You won't win every hand, but on average each round moves you forward. A <strong>supermartingale</strong> is the reverse (the house always wins, like a tourist at a slot machine), and a <strong>martingale</strong> is a fair game with no drift either way.</p>
 
 <p>The RSI question, restated precisely: <strong>under what conditions is the capability process $\{C_t\}$ a submartingale?</strong></p>
 
@@ -374,19 +374,19 @@ $$\mathbb{E}[C_{t+1} \mid C_0, C_1, \ldots, C_t] \;\geq\; C_t$$
 <!-- ====== Section 3: What Determines the Nature ====== -->
 <h2>What Determines the Nature of the Process</h2>
 
-<p>In each iteration of the generate-verify-update loop, two forces compete:</p>
+<p>Each round of the generate-verify-update loop, two forces compete.</p>
 
-<p>The <strong>signal</strong> is how well the verifier identifies genuine improvements &mdash; if it perfectly tracks true capability, every accepted modification is a real step forward. The <strong>noise</strong> comes from everything else: random candidate generation, measurement error, and landscape curvature (a step in the right direction can still overshoot).</p>
+<p>The <strong>signal</strong> is how well the verifier identifies genuine improvements. If it perfectly tracks true capability, every accepted modification is a real step forward. The <strong>noise</strong> comes from everything else: random candidate generation, measurement error, and landscape curvature (a step in the right direction can still overshoot).</p>
 
-<p>When signal dominates noise, the process is a submartingale; when noise dominates, a supermartingale. The boundary is a precise inequality.</p>
+<p>When signal dominates noise, the process is a submartingale. When noise dominates, a supermartingale. The boundary between them is a precise inequality.</p>
 
-<p>To state it, we need four quantities. Each has a concrete meaning in the context of a running RSI system:</p>
+<p>To state it, we need four quantities:</p>
 
 <ul class="quantity-list">
-  <li>$\rho_t \in [0, 1]$ : <strong>Verifier alignment.</strong> How well the verifier's signal correlates with the true capability gradient. At $\rho_t = 1$, the verifier perfectly identifies which changes genuinely improve capability. At $\rho_t = 0$, its signal is uncorrelated with reality. For FunSearch, where a proof checker verifies mathematical constructions, $\rho_t \approx 1$. For a learned reward model judging open-ended outputs, $\rho_t$ is lower, and (as we'll see) unstable.</li>
-  <li>$\sigma_G^2,\; \sigma_V^2$ : <strong>Generator and verifier noise.</strong> How much randomness is in the candidate modifications and the evaluation signal. A system that proposes wild mutations has high $\sigma_G^2$. A verifier with noisy measurements has high $\sigma_V^2$.</li>
-  <li>$\eta_t$ : <strong>Step size.</strong> How much the system changes itself per iteration. Larger steps mean faster potential progress but also larger potential damage from noise.</li>
-  <li>$L$ : <strong>Landscape smoothness.</strong> How nonlinear the relationship is between parameter changes and capability changes. High $L$ means the landscape curves sharply, so even a step in the right direction can overshoot the optimum.</li>
+  <li>$\rho_t \in [0, 1]$ : <strong>Verifier quality.</strong> How well the system's judgment tracks reality. At $\rho_t = 1$, the verifier perfectly identifies which changes are genuine improvements. At $\rho_t = 0$, it's flipping a coin. For FunSearch, where a proof checker verifies mathematical constructions, $\rho_t \approx 1$. For a learned reward model judging open-ended outputs, $\rho_t$ is lower, and (as we'll see) unstable.</li>
+  <li>$\sigma_G^2,\; \sigma_V^2$ : <strong>Noise.</strong> How much randomness there is in the candidate changes and in the evaluation of those changes, respectively. A system that proposes wild mutations has high $\sigma_G^2$. A verifier with noisy measurements has high $\sigma_V^2$.</li>
+  <li>$\eta_t$ : <strong>Step size.</strong> How much the system changes itself each round. Larger steps mean faster potential progress but also larger potential damage from noise.</li>
+  <li>$L$ : <strong>Landscape curvature.</strong> How nonlinear the relationship is between changes and their effects. A smoother landscape is more forgiving of large steps. High $L$ means the landscape curves sharply, so even a step in the right direction can overshoot.</li>
 </ul>
 
 <p>The <strong>Variance Inequality</strong> states that the capability process is a submartingale if and only if:</p>
@@ -398,40 +398,40 @@ $$\mathbb{E}[C_{t+1} \mid C_0, C_1, \ldots, C_t] \;\geq\; C_t$$
 
 <p>where $g^* = \nabla F(\theta_t)$ is the true capability gradient, i.e., the direction of real improvement in parameter space.</p>
 
-<p>Read the inequality left-to-right: the <em>alignment-weighted signal</em> (left side) must exceed the <em>noise-amplified curvature penalty</em> (right side). The left side grows with verifier quality and the availability of real improvements. The right side grows with step size, noise, and landscape curvature.</p>
+<p>In plain language: <strong>the real signal has to be stronger than the noise.</strong> The left side is how much real capability gain you get per step. It depends on how good your verifier is ($\rho_t$) and how much genuine improvement is available ($\|g^*\|^2$). The right side is how much you lose to noise and taking steps that are too big. It grows with step size, landscape curvature, and the randomness in both generating and evaluating changes.</p>
 
-<p>Three consequences are immediate:</p>
+<p>Three practical consequences:</p>
 
 <ol class="consequence-list">
-  <li><strong>A nontrivial verifier is necessary.</strong> When $\rho_t = 0$, the left side vanishes. No matter how clever the generator, a random verifier cannot sustain a submartingale. You cannot self-improve without the ability to distinguish improvement from degradation.</li>
-  <li><strong>There is a maximum safe step size.</strong> Rearranging the inequality gives $\eta_{\max} = 2\rho_t \|g^*\|^2 \,/\, L(\rho_t^2 \|g^*\|^2 + \sigma_G^2 + \sigma_V^2)$. Beyond this, the noise penalty from overshooting exceeds the expected gain. Small, verified steps beat large leaps.</li>
-  <li><strong>Ensemble verification helps linearly.</strong> With $M$ independent verifiers, the combined verifier noise drops to $\sigma_V^2 / M$, making the inequality easier to satisfy. This is exactly what AlphaEvolve does by running populations of candidates scored independently.</li>
+  <li><strong>You need a good judge.</strong> When $\rho_t = 0$, the left side vanishes. No matter how creative your change proposals are, you can't self-improve if you can't tell improvement from degradation.</li>
+  <li><strong>Small steps beat big leaps.</strong> Rearranging the inequality gives a maximum safe step size: $\eta_{\max} = 2\rho_t \|g^*\|^2 \,/\, L(\rho_t^2 \|g^*\|^2 + \sigma_G^2 + \sigma_V^2)$. Beyond that, changes are too aggressive to reliably help. Cautious, verified steps compound; big jumps blow up.</li>
+  <li><strong>More judges help.</strong> With $M$ independent verifiers, the noise in evaluation drops to $\sigma_V^2 / M$, making the condition easier to satisfy in direct proportion to judge count. This is exactly what AlphaEvolve does by evaluating populations of candidates with independent scoring.</li>
 </ol>
 
 
 <!-- ====== Section 4: Doob ====== -->
 <h2>Progress vs. Noise: The Doob Decomposition</h2>
 
-<p>When you observe a real RSI trajectory (capability scores jumping up and down across iterations), a natural question is: how much of this is real progress, and how much is noise? The <strong>Doob decomposition theorem</strong> provides a clean answer. Any submartingale can be uniquely split into:</p>
+<p>When you watch a real RSI trajectory (capability scores jumping up and down across iterations), a natural question is: how much of this is real progress, and how much is noise? There's a classical result in probability theory called the <strong>Doob decomposition</strong> that gives a clean answer. Any submartingale can be uniquely split into exactly two parts:</p>
 
 <div class="equation-box">
   <div class="equation-label">Doob Decomposition</div>
   $$C_t \;=\; C_0 \;+\; \underbrace{A_t}_{\text{progress}} \;+\; \underbrace{M_t}_{\text{noise}}$$
 </div>
 
-<p>$A_t$ is the <strong>progress process</strong>, a predictable, non-decreasing sequence that captures systematic improvement. $M_t$ is the <strong>noise process</strong>, a martingale with no directional tendency.</p>
+<p>$A_t$ is <strong>progress</strong>: the systematic, predictable part of capability improvement. This only goes up. It accumulates the genuine gains from good verification and well-chosen modifications. $M_t$ is <strong>noise</strong>: pure randomness with no direction. Exploration jitter, measurement error, lucky and unlucky rolls. It averages out to zero.</p>
 
-<p>The shape of $A_t$ over time determines the system's long-run fate. If $A_t$ is concave (increments shrinking), the system converges to a ceiling. If $A_t$ grows linearly, expected capability grows at a steady linear rate. If $A_t$ grows exponentially&mdash;which requires constant recalcitrance with optimization power proportional to capability ($\mu_t \propto C_t$)&mdash;capability grows exponentially. If convex with superlinear increments, you get potentially divergent improvement (finite-time blowup).</p>
+<p>The shape of $A_t$ over time determines the system's long-run fate. If $A_t$ is concave (increments shrinking), the system converges to a ceiling. If $A_t$ grows linearly, expected capability grows at a steady rate. If $A_t$ grows exponentially (which requires constant recalcitrance with optimization power proportional to capability, $\mu_t \propto C_t$), capability grows exponentially. If convex with superlinear increments, you get potentially divergent improvement.</p>
 
 <p>Empirically, where are current RSI systems? The best available calibration comes from the economics literature:</p>
 
 <div class="callout">
   <div class="callout-title">Empirical Calibration: The 15% Threshold</div>
-  <p>Cunningham et al. (2026) estimate that <strong>self-sustaining acceleration</strong>&mdash;the convex regime where capability growth compounds faster than the obstacles scale&mdash;requires approximately <strong>15% productivity gain per unit of capability improvement</strong>. Current frontier systems achieve roughly <strong>9%</strong>.</p>
-  <p>This places us firmly in the <strong>concave regime</strong>: the progress process $A_t$ has diminishing increments. The system is improving, but decelerating toward a ceiling. The gap between 9% and 15% is narrowing, but it hasn't closed.</p>
+  <p>Cunningham et al. (2026) estimate that <strong>self-sustaining acceleration</strong> (the regime where capability growth compounds faster than the obstacles scale) requires approximately <strong>15% productivity gain per unit of capability improvement</strong>. Current frontier systems achieve roughly <strong>9%</strong>.</p>
+  <p>This means we're in the <strong>decelerating regime</strong>: the progress process $A_t$ has diminishing increments. We are improving, but slowing down. The gap between 9% and 15% is narrowing, but it hasn't closed.</p>
 </div>
 
-<p>This framing is useful, but so far it's static. It takes the submartingale condition as given and asks about long-run behavior. The more important question is: <strong>does the submartingale condition itself persist?</strong></p>
+<p>This framing is useful, but so far it's static. It takes the submartingale condition as given and asks about long-run behavior. The more important question is: <strong>does the submartingale condition itself last?</strong></p>
 
 
 <!-- ====== Section 5: Goodhart (CENTERPIECE) ====== -->
@@ -445,9 +445,9 @@ $$\mathbb{E}[C_{t+1} \mid C_0, C_1, \ldots, C_t] \;\geq\; C_t$$
   <p><strong>Goodhart's Law:</strong> &ldquo;When a measure becomes a target, it ceases to be a good measure.&rdquo;</p>
 </div>
 
-<p>The idea is intuitive. Consider a school that evaluates teachers by students' standardized test scores. At first, test scores are a reasonable proxy for learning, since better teaching produces better scores. But once teachers optimize <em>for</em> the scores, the correlation breaks. They teach to the test: drilling specific question formats, deprioritizing topics not covered by the exam, and in extreme cases, manipulating results. The metric goes up. The thing it was supposed to measure does not.</p>
+<p>The idea is intuitive. Consider a school that evaluates teachers by standardized test scores. At first, test scores are a reasonable proxy for learning. Better teaching produces better scores. But once teachers optimize <em>for</em> the scores, the correlation breaks. They teach to the test: drilling question formats, skipping topics the exam won't cover, and in extreme cases, manipulating results. The metric goes up. The thing it was supposed to measure does not.</p>
 
-<p>This happens because the metric captures only a projection of the real objective. As long as optimization pressure is mild, the projection is good enough. But as optimization intensifies, the system discovers the gap between the metric and the objective, and exploits it.</p>
+<p>This happens because the metric only captures a slice of the real objective. As long as optimization pressure is mild, the slice is good enough. But as optimization intensifies, the system discovers the gap between the metric and the objective, and exploits it.</p>
 
 <h3>Goodhart's Law in RSI</h3>
 
@@ -481,7 +481,7 @@ $$\nabla V_t \;=\; \underbrace{\rho_t \,\frac{\|\nabla V_t\|}{\|\nabla F_t\|}\, 
   <li><strong>When $\rho_t < 1$:</strong> $\sqrt{1-\rho_t^2} > 0$, so $\dot{\rho}_t < 0$ whenever $\|\dot{\theta}_t\| > 0$. The orthogonal component is nonzero, meaning the verifier has a proxy gap. Optimization pressure pushes parameters into this gap, and alignment strictly decreases.</li>
 </ul>
 
-<p>That's the formal link. The proxy gap isn't a free parameter &mdash; it's $\sqrt{1-\rho_t^2}$, fully determined by $\rho_t$. Any $\rho_0 < 1$ produces a nonzero orthogonal component, which produces nonzero drift, which reduces $\rho_t$ further.</p>
+<p>That's the formal link. The proxy gap isn't a free parameter. It's $\sqrt{1-\rho_t^2}$, fully determined by $\rho_t$. Any $\rho_0 < 1$ produces a nonzero orthogonal component, which produces nonzero drift, which reduces $\rho_t$ further.</p>
 
 <p>Now connect this to the Variance Inequality. That inequality requires $\rho_t \geq \rho_{\text{crit}}$ for the submartingale condition to hold. Since $\rho_t$ is strictly decreasing whenever the system is actively self-modifying and $\rho_t < 1$, it will eventually cross $\rho_{\text{crit}}$. At that crossing, expected improvement becomes expected degradation. So the question becomes: how long does it take?</p>
 
@@ -492,15 +492,15 @@ $$\nabla V_t \;=\; \underbrace{\rho_t \,\frac{\|\nabla V_t\|}{\|\nabla F_t\|}\, 
   $$\tau \;\approx\; \frac{\arccos(\rho_{\text{crit}}) - \arccos(\rho_0)}{\gamma_0\, \|\dot{\theta}\|_{\text{avg}}}$$
 </div>
 
-<p>The numerator measures the <strong>angular distance</strong> between initial alignment and the critical threshold. The denominator is the <strong>optimization intensity</strong> scaled by the landscape constant. As $\rho_0 \to 1$, $\arccos(\rho_0) \to 0$, so the numerator approaches $\arccos(\rho_{\text{crit}})$, a positive constant. The lifetime is therefore bounded above by $\arccos(\rho_{\text{crit}}) / (\gamma_0 \|\dot{\theta}\|_{\text{avg}})$, reached in the limit of perfect initial alignment. The smaller the initial proxy gap $(1 - \rho_0)$, the longer the lifetime&mdash;but it never becomes infinite unless $\rho_0 = 1$ exactly. Even near-perfect initial alignment ($\rho_0 = 0.99$) gives a finite, computable time to collapse.</p>
+<p>The numerator measures the <strong>angular distance</strong> between initial alignment and the critical threshold. The denominator is the <strong>optimization intensity</strong> scaled by the landscape constant. As $\rho_0 \to 1$, $\arccos(\rho_0) \to 0$, so the numerator approaches $\arccos(\rho_{\text{crit}})$, a positive constant. The lifetime is therefore bounded above by $\arccos(\rho_{\text{crit}}) / (\gamma_0 \|\dot{\theta}\|_{\text{avg}})$, reached in the limit of perfect initial alignment. A better initial verifier gives you more runway, but the runway is always finite unless $\rho_0 = 1$ exactly. Even near-perfect initial alignment ($\rho_0 = 0.99$) gives a finite, computable time to collapse.</p>
 
 <p>This is why FunSearch and AlphaEvolve sustain improvement: their verifiers are <em>execution-based</em> (run the code, check the proof). A proof checker's alignment is $\rho \approx 1$, so $\sqrt{1-\rho^2} \approx 0$ and the drift rate is negligible. Alignment stays near 1 regardless of optimization pressure. But for learned judges, reward models, or test suites that can be gamed, $\rho < 1$ from the start, and decay is inevitable.</p>
 
 <h3>The Second Mechanism: Self-Referential Closure</h3>
 
-<p>Goodhart drift has a partner. As a system becomes more capable, it naturally relies more on its own outputs and less on external validation. We can parameterize this with $\alpha_t \in [0,1]$, the fraction of the evaluation signal that comes from external, independently validated sources such as human review, held-out benchmarks, or execution on real-world tasks.</p>
+<p>Goodhart drift has a partner. As a system gets more capable, it naturally starts relying more on its own outputs and less on external checks. We can parameterize this with $\alpha_t \in [0,1]$, the fraction of the evaluation signal that comes from external, independently validated sources like human review, held-out benchmarks, or execution on real-world tasks.</p>
 
-<p>In practice, $\alpha_t$ tends toward zero: the system generates more of its own training data, evaluates its own modifications, and becomes increasingly self-referential. But stochastic approximation theory establishes a hard requirement for convergence to truth: the external grounding must satisfy $\sum_t \alpha_t = \infty$, meaning the total amount of external signal must be unbounded. If $\alpha_t$ decays too fast (or reaches zero), the process loses its anchor to reality and degenerates into a random walk.</p>
+<p>In practice, $\alpha_t$ drifts toward zero: the system generates more of its own training data, evaluates its own modifications, and becomes increasingly self-referential. But convergence theory sets a hard requirement: the external grounding must satisfy $\sum_t \alpha_t = \infty$, meaning the total amount of outside signal must be unbounded. If $\alpha_t$ decays too fast (or reaches zero), the system loses its anchor to reality and degrades into a random walk.</p>
 
 <h3>The Combined Effect</h3>
 
@@ -578,25 +578,25 @@ $$\nabla V_t \;=\; \underbrace{\rho_t \,\frac{\|\nabla V_t\|}{\|\nabla F_t\|}\, 
   </thead>
   <tbody>
     <tr>
-      <td style="color: var(--regime-i); font-weight: 600;">I &mdash; Persistent</td>
+      <td style="color: var(--regime-i); font-weight: 600;">I: Stable</td>
       <td>$\rho_t \geq \rho_{\text{crit}}$ holds indefinitely; $\alpha_t$ stays positive</td>
-      <td>Sustained improvement, convergent to ceiling</td>
+      <td>Sustained improvement, converging to a ceiling</td>
       <td>AlphaEvolve, FunSearch (execution-based verifiers)</td>
     </tr>
     <tr>
-      <td style="color: var(--regime-ii); font-weight: 600;">II &mdash; Transient</td>
+      <td style="color: var(--regime-ii); font-weight: 600;">II: Rise then collapse</td>
       <td>$\rho_t$ decays below $\rho_{\text{crit}}$ at time $\tau$</td>
       <td>Rise then collapse</td>
       <td>DGM's test-gaming behavior; learned-judge systems</td>
     </tr>
     <tr>
-      <td style="color: var(--regime-iii); font-weight: 600;">III &mdash; Collapse</td>
+      <td style="color: var(--regime-iii); font-weight: 600;">III: Collapse</td>
       <td>$\rho_t &lt; \rho_{\text{crit}}$ always; $\alpha_t = 0$</td>
-      <td>Monotone degradation (model collapse)</td>
+      <td>Steady degradation (model collapse)</td>
       <td>Closed-loop self-training without external signal</td>
     </tr>
     <tr>
-      <td style="color: #a04030; font-weight: 600;">III* &mdash; Slow Collapse</td>
+      <td style="color: #a04030; font-weight: 600;">III*: Slow collapse</td>
       <td>$\rho_t &lt; \rho_{\text{crit}}$ always; $\alpha_t > 0$ (external grounding present)</td>
       <td>Degradation slowed but not prevented by external signal</td>
       <td>Systems with external grounding but fundamentally misaligned verifiers</td>
@@ -620,31 +620,31 @@ $$\nabla V_t \;=\; \underbrace{\rho_t \,\frac{\|\nabla V_t\|}{\|\nabla F_t\|}\, 
 <!-- ====== Section 7: Practical + Closing ====== -->
 <h2>What This Means in Practice</h2>
 
-<p>The central result is that <strong>as long as $\rho < 1$, the submartingale condition has a finite lifetime.</strong> The system will eventually approach the Regime&nbsp;I–to–Regime&nbsp;II boundary. The submartingale condition degrades under its own operation &mdash; how fast depends on verification quality, but it always degrades.</p>
+<p>The central result is that <strong>as long as $\rho < 1$, the submartingale condition has a finite lifetime.</strong> The system will eventually approach the boundary between Regime I and Regime II. The conditions for improvement degrade under the system's own operation. How fast depends on verification quality, but they always degrade.</p>
 
-<p>What you <em>can</em> do is monitor the drift between what the verifier reports and what the system actually achieves, and intervene before collapse.</p>
+<p>What you <em>can</em> do is watch the gap between what the verifier reports and what the system actually achieves, and step in before collapse.</p>
 
 <div class="implication-card">
   <h4>1. Monitor, Stop, Recalibrate</h4>
-  <p>Periodically compare your verifier's scores against an independent ground-truth benchmark the system has not optimized against. The rank correlation between the two is your empirical estimate of $\rho_t$. Track it over iterations. A sustained negative slope across three or more checkpoints means the shelf life is running out. The cost of this protocol is small (a few percent of compute) relative to the cost of an undetected collapse.</p>
-  <p>When the drift rate $\hat{\mu}_t$ (a running mean over $W \approx 20\text{--}50$ recent iterations) crosses zero, stop the loop. The optional stopping theorem guarantees you keep whatever gains you've accumulated&mdash;stopping conservatively is always safe. Then recalibrate the verifier against ground truth and restart from the current best checkpoint. This is the episodic pattern: run, monitor, stop, recalibrate, restart. Each episode captures real gains.</p>
+  <p>Periodically compare your verifier's scores against an independent ground-truth benchmark the system hasn't been optimizing against. The rank correlation between the two is your empirical estimate of $\rho_t$. Track it over iterations. A sustained negative slope across three or more checkpoints means you're running out of runway. The cost of this protocol is small (a few percent of compute) relative to the cost of an undetected collapse.</p>
+  <p>When the drift rate $\hat{\mu}_t$ (a running mean over $W \approx 20\text{--}50$ recent iterations) crosses zero, stop the loop. The optional stopping theorem guarantees you keep whatever gains you've built up. Then recalibrate the verifier against ground truth and restart from the current best checkpoint. This is the episodic pattern: run, monitor, stop, recalibrate, restart. Each episode captures real gains.</p>
 </div>
 
 <div class="implication-card">
   <h4>2. Choose Durable Verifiers and Maintain External Grounding</h4>
-  <p>Not all verifiers decay at the same rate. <strong>Formal verifiers</strong> (proof checkers, type systems) have $\rho \approx 1$, so the proxy gap is near zero and Goodhart drift is negligible. <strong>Execution feedback</strong> (run the code, measure wall-clock time, check outputs) is hard to game without actually solving the problem. <strong>Learned judges</strong> (reward models, LLM-as-judge) have a substantial proxy gap and drift fast. <strong>Intrinsic signals</strong> (self-consistency, confidence scores) are the most vulnerable. The practical strategy is hybrid: use execution-based verification for everything that <em>can</em> be executed, and supplement with learned judges only for what cannot.</p>
-  <p>Independently, never let the fraction of externally validated signal $\alpha_t$ reach zero. The system can grow more autonomous over time, but convergence requires a persistent stream of signal generated independently of its own optimization&mdash;human evaluation, deployment metrics, rotated held-out benchmarks. A principled schedule is $\alpha_t = c/(t + t_0)$ (the Robbins-Monro conditions): enough total grounding to anchor truth ($\sum \alpha_t = \infty$), diminishing fast enough to let the system learn from itself ($\sum \alpha_t^2 < \infty$).</p>
+  <p>Not all verifiers decay at the same rate. <strong>Formal verifiers</strong> (proof checkers, type systems) have $\rho \approx 1$, so the proxy gap is near zero and Goodhart drift is negligible. <strong>Execution feedback</strong> (run the code, measure wall-clock time, check outputs) is hard to game without actually solving the problem. <strong>Learned judges</strong> (reward models, LLM-as-judge) have a substantial proxy gap and drift fast. <strong>Intrinsic signals</strong> (self-consistency, confidence scores) are the most vulnerable. The practical strategy is to use execution-based verification for everything that <em>can</em> be executed, and bring in learned judges only for what can't.</p>
+  <p>Separately, never let the fraction of externally validated signal $\alpha_t$ reach zero. The system can grow more autonomous over time, but convergence requires a steady stream of outside signal: human evaluation, deployment metrics, rotated held-out benchmarks. A principled schedule is $\alpha_t = c/(t + t_0)$ (the Robbins-Monro conditions): enough total grounding to stay anchored ($\sum \alpha_t = \infty$), tapering fast enough to let the system learn from itself ($\sum \alpha_t^2 < \infty$).</p>
 </div>
 
 <h2>Closing</h2>
 
-<p>The stochastic process framing turns RSI from a yes-or-no question into a quantitative one: <strong>is your self-improvement process a submartingale, and how long will it stay one?</strong></p>
+<p>Can AI improve itself? Yes, sometimes. The real question is whether it can <em>keep</em> improving itself, and this framework gives a precise answer: <strong>is your self-improvement process a submartingale, and how long will it stay one?</strong></p>
 
-<p>For any system with an imperfect verifier ($\rho < 1$), the submartingale condition has a finite lifetime. Goodhart drift erodes verifier alignment; self-referential closure removes external grounding. These aren't bugs you can fix in implementation. They're structural consequences of optimizing against a proxy.</p>
+<p>For any system with an imperfect verifier ($\rho < 1$), the answer is: not forever. Goodhart drift erodes verifier quality. Self-referential closure removes external grounding. These aren't implementation bugs you can fix. They're structural consequences of optimizing against a proxy.</p>
 
-<p>That said, the ceiling is not uniform. Execution-verified systems (AlphaEvolve, FunSearch) keep $\rho$ near 1, making the drift rate negligible and the practical lifetime very long. Tool-augmented systems may partially escape the complexity bounds that constrain pure self-modification, by offloading capability gains onto external tools rather than internal parameter changes. And recent work (AIDE&sup2;, 2026) shows that some self-verification architectures exhibit partial resistance to Goodhart drift in practice. These are real escape routes, but they apply to structured domains, not open-ended self-evolution.</p>
+<p>That said, the ceiling isn't the same everywhere. Execution-verified systems (AlphaEvolve, FunSearch) keep $\rho$ near 1, making drift negligible and the practical lifetime very long. Tool-augmented systems may partially escape the complexity bounds of pure self-modification by offloading capability gains onto external tools. And recent work (AIDE&sup2;, 2026) shows that some architectures resist Goodhart drift in practice. These are real escape routes, but they apply to structured domains, not open-ended self-evolution.</p>
 
-<p>The viable path is <em>episodic</em> self-improvement: run the loop, monitor the drift between verifier and reality, stop and recalibrate before collapse, restart from the new baseline. Each episode captures real gains. You consume the submartingale condition by optimizing and replenish it by recalibrating. The prescription isn't to stop self-improving. It's to measure the gap, and stop trusting the loop before the verifier stops deserving trust.</p>
+<p>The viable path is <em>episodic</em> self-improvement: run the loop, watch the gap between verifier and reality, stop and recalibrate before collapse, restart from the new baseline. Each episode captures real gains. You consume the submartingale condition by optimizing and replenish it by recalibrating. The point isn't to stop self-improving. It's to measure the gap, and stop trusting the loop before the verifier stops deserving trust.</p>
 
 <hr>
 
