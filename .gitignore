@@ -11,3 +11,5 @@ assets/libs/
 node_modules/
 vendor
 .idea
+# Local clone of the separate CV repo (github.com/crqu/Chengrui-Academic-CV)
+Chengrui-Academic-CV/

@@ -6,10 +6,10 @@ subtitle: <b>PhD Student</b> at Caltech
 
 profile:
   align: right
-  image: photo.png
+  image: pic.png
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p> Shot in PKU, 2025 Spring</p>
+    <p> Shot in Santa Monica, 2026 Winter</p>
 
 news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
