@@ -60,16 +60,16 @@ Repo hygiene (all verified against `git ls-files` and a reference grep):
 
 ## Decisions
 
-| Decision | Choice |
-| --- | --- |
-| Scope | Restyle al-folio in place; keep the jekyll-scholar pipeline |
-| Home layout | Single column with a masthead header block |
+| Decision     | Choice                                                                 |
+| ------------ | ---------------------------------------------------------------------- |
+| Scope        | Restyle al-folio in place; keep the jekyll-scholar pipeline            |
+| Home layout  | Single column with a masthead header block                             |
 | Visual voice | Quiet academic — serif headings, sans body, warm off-white, one accent |
-| Publications | Keep thumbnails, normalize to a fixed 3:2 box |
-| Header links | Email, Google Scholar, CV, GitHub, LinkedIn |
-| INSPIRE-HEP | Removed (unrelated to CMS/RL work; template leftover) |
-| Misc page | Uniform responsive grid with lightbox |
-| Cleanup | Demo files, unused images, ClustrMaps, unused layouts — all deleted |
+| Publications | Keep thumbnails, normalize to a fixed 3:2 box                          |
+| Header links | Email, Google Scholar, CV, GitHub, LinkedIn                            |
+| INSPIRE-HEP  | Removed (unrelated to CMS/RL work; template leftover)                  |
+| Misc page    | Uniform responsive grid with lightbox                                  |
+| Cleanup      | Demo files, unused images, ClustrMaps, unused layouts — all deleted    |
 
 Identity values to wire in:
 
@@ -92,12 +92,12 @@ No component may introduce a raw px value for spacing.
 
 Fixed assignments, applied uniformly:
 
-| Relationship | Token |
-| --- | --- |
-| Section → section | `--s8` |
-| Section heading → its body | `--s4` |
-| Paragraph → paragraph | `--s3` |
-| List row → list row | `--s4` |
+| Relationship                | Token  |
+| --------------------------- | ------ |
+| Section → section           | `--s8` |
+| Section heading → its body  | `--s4` |
+| Paragraph → paragraph       | `--s3` |
+| List row → list row         | `--s4` |
 | Masthead photo → text block | `--s5` |
 
 ### Type
@@ -106,25 +106,25 @@ Newsreader for headings, Inter for body. Both self-hosted through the existing
 `_plugins/download-3rd-party.rb` vendoring step, so there is no render-blocking
 third-party font request. `JetBrains Mono` for code only — never captions.
 
-| Role | Size | Family / weight | Notes |
-| --- | --- | --- | --- |
-| Name (h1) | 2.25rem | Newsreader 600 | `letter-spacing: -0.015em` |
-| Section (h2) | 1.625rem | Newsreader 600 | |
-| Sub (h3) | 1.125rem | Inter 600 | |
-| Body | 1.0625rem | Inter 400 | `line-height: 1.65` |
-| Meta | .875rem | Inter 400 | muted; `font-variant-numeric: tabular-nums` |
+| Role         | Size      | Family / weight | Notes                                       |
+| ------------ | --------- | --------------- | ------------------------------------------- |
+| Name (h1)    | 2.25rem   | Newsreader 600  | `letter-spacing: -0.015em`                  |
+| Section (h2) | 1.625rem  | Newsreader 600  |                                             |
+| Sub (h3)     | 1.125rem  | Inter 600       |                                             |
+| Body         | 1.0625rem | Inter 400       | `line-height: 1.65`                         |
+| Meta         | .875rem   | Inter 400       | muted; `font-variant-numeric: tabular-nums` |
 
 ### Color
 
 Same token names resolved per theme in `_sass/_themes.scss`.
 
-| Token | Light | Dark |
-| --- | --- | --- |
-| `--ink` | `#1A1A1A` | `#E8E6E3` |
+| Token         | Light     | Dark      |
+| ------------- | --------- | --------- |
+| `--ink`       | `#1A1A1A` | `#E8E6E3` |
 | `--ink-muted` | `#5C5C5C` | `#A09C96` |
-| `--bg` | `#FDFCFA` | `#12110F` |
-| `--rule` | `#E6E3DE` | `#2A2825` |
-| `--accent` | `#1F5673` | `#7FB3D5` |
+| `--bg`        | `#FDFCFA` | `#12110F` |
+| `--rule`      | `#E6E3DE` | `#2A2825` |
+| `--accent`    | `#1F5673` | `#7FB3D5` |
 
 Accent is used on links only — never on headings, borders, or buttons. Both accent
 pairings must clear WCAG AA, which the CI `axe` job checks.

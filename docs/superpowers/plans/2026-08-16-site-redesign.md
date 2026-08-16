@@ -12,7 +12,7 @@
 
 ## Global Constraints
 
-- **No test suite exists.** Every task is verified by building the site, screenshotting in headless Chrome, and *reading the screenshot back*. A task is not complete on reasoning alone.
+- **No test suite exists.** Every task is verified by building the site, screenshotting in headless Chrome, and _reading the screenshot back_. A task is not complete on reasoning alone.
 - **Spacing tokens only.** No raw px/rem spacing values in new CSS. Use `--s1`…`--s8`.
 - **Accent on links only.** Never on headings, borders, or buttons.
 - **purgecss runs in production** (`purgecss.config.js`). Every new class name must appear literally in a `.liquid`/`.md` file — never assemble class names in Liquid.
@@ -68,6 +68,7 @@ After every `shoot`, **Read the PNG** and check it against the task's assertions
 Removes the upstream demo baggage and wires identity values. No visual change expected except the footer un-pinning and social links becoming available.
 
 **Files:**
+
 - Delete: `readme_preview/` (14 files), `lighthouse_results/` (4 files), `README.md`, `CUSTOMIZE.md`, `FAQ.md`, `INSTALL.md`, `CONTRIBUTING.md`
 - Delete: `assets/img/{1..12}.jpg`, `assets/img/photo.jpg`, `assets/img/photo.png`, `assets/img/prof_pic.jpg`, `assets/img/prof_pic_color.png`, `assets/img/chengrui-life.jpg`, `assets/img/chengrui-round.png`
 - Delete: `_layouts/distill.liquid`, `_layouts/cv.liquid`, `_layouts/profiles.liquid`
@@ -81,6 +82,7 @@ Removes the upstream demo baggage and wires identity values. No visual change ex
 - Create: `README.md`
 
 **Interfaces:**
+
 - Produces: a build with no `distill`/`cv`/`tabs`/`typograms` SCSS partials, `site.max_width == 760px`, `site.footer_fixed == false`, and populated `github_username`/`linkedin_username`.
 
 - [ ] **Step 1: Verify every deletion target is unreferenced**
@@ -120,20 +122,8 @@ git rm -r -q _projects 2>/dev/null || true
 In `assets/css/main.scss`, replace the `@import` block with:
 
 ```scss
-@import
-  "variables",
-  "themes",
-  "layout",
-  "base",
-  "site",
-  "font-awesome/fontawesome",
-  "font-awesome/brands",
-  "font-awesome/solid",
-  "font-awesome/regular",
-  "tabler-icons/tabler-icons.scss",
-  "tabler-icons/tabler-icons-filled.scss",
-  "tabler-icons/tabler-icons-outline.scss"
-;
+@import "variables", "themes", "layout", "base", "site", "font-awesome/fontawesome", "font-awesome/brands", "font-awesome/solid",
+  "font-awesome/regular", "tabler-icons/tabler-icons.scss", "tabler-icons/tabler-icons-filled.scss", "tabler-icons/tabler-icons-outline.scss";
 ```
 
 - [ ] **Step 4: Create the `_site.scss` stub so the build does not break**
@@ -184,7 +174,7 @@ Append to `.gitignore` if not already present:
 
 Create `README.md`:
 
-```markdown
+````markdown
 # crqu.github.io
 
 Personal academic website for Chengrui Qu — built with [Jekyll](https://jekyllrb.com/)
@@ -197,20 +187,21 @@ hosted on GitHub Pages.
 bundle install
 bundle exec jekyll serve      # http://localhost:4000
 ```
+````
 
 Requires Ruby, Bundler, and ImageMagick (for responsive image generation).
 
 ## Content
 
-| What | Where |
-| --- | --- |
-| Landing page | `_pages/about.md` |
-| Publications | `_bibliography/papers.bib` (rendered by jekyll-scholar) |
-| News items | `_news/announcement_N.md` |
-| Blog posts | `_posts/` |
-| Photos page | `_pages/misc.md` |
-| Design tokens | `_sass/_variables.scss`, `_sass/_themes.scss` |
-| Components | `_sass/_site.scss` |
+| What          | Where                                                   |
+| ------------- | ------------------------------------------------------- |
+| Landing page  | `_pages/about.md`                                       |
+| Publications  | `_bibliography/papers.bib` (rendered by jekyll-scholar) |
+| News items    | `_news/announcement_N.md`                               |
+| Blog posts    | `_posts/`                                               |
+| Photos page   | `_pages/misc.md`                                        |
+| Design tokens | `_sass/_variables.scss`, `_sass/_themes.scss`           |
+| Components    | `_sass/_site.scss`                                      |
 
 ## Deploy
 
@@ -223,14 +214,15 @@ Do not hand-edit `gh-pages`.
 ```bash
 npx prettier --write .
 ```
-```
+
+````
 
 - [ ] **Step 8: Build and verify**
 
 ```bash
 cd /Users/chengruiqu/Documents/pages/crqu.github.io
 bundle exec jekyll build 2>&1 | tail -20
-```
+````
 
 Expected: `done in N seconds`, no `Liquid Exception`, no `Could not locate`. If the build fails on a missing include, the grep in Step 1 missed a reference — restore that one file with `git checkout HEAD -- <path>` and note it.
 
@@ -242,6 +234,7 @@ shoot t1_home / 1440 2400
 ```
 
 Read `$SHOTS/t1_home.png`. Assertions:
+
 - Page renders with all sections present (About, News, latest posts, Selected Publications).
 - Footer is no longer a pinned black bar at the viewport bottom (it now sits at content end — still dark, that is fixed in Task 7).
 - Content column is visibly narrower than before.
@@ -261,12 +254,14 @@ git commit -m "chore: remove upstream al-folio demo files and wire identity conf
 Establishes the token layer and remaps `--global-*` onto it. This single task kills the magenta site-wide.
 
 **Files:**
+
 - Modify: `_sass/_variables.scss`
 - Modify: `_sass/_themes.scss:5-108`
 - Create: `assets/fonts/` (woff2 files)
 - Modify: `_sass/_site.scss`
 
 **Interfaces:**
+
 - Produces tokens consumed by every later task: `--s1`…`--s8`, `--ink`, `--ink-muted`, `--bg`, `--rule`, `--accent`, `--font-serif`, `--font-sans`, `--font-mono`, `--content-width`.
 
 - [ ] **Step 1: Download the fonts**
@@ -288,10 +283,7 @@ If the download fails (no network), fall back to adding to `_includes/head.liqui
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@600&display=swap"
-  rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@600&display=swap" rel="stylesheet" />
 ```
 
 and skip Step 2.
@@ -360,69 +352,69 @@ $accent-dark: #7fb3d5;
 In the `:root` block, insert these lines immediately after `:root {`:
 
 ```scss
-  // --- Design tokens -------------------------------------------------------
-  --ink: #{$ink-light};
-  --ink-muted: #{$ink-muted-light};
-  --bg: #{$bg-light};
-  --rule: #{$rule-light};
-  --accent: #{$accent-light};
+// --- Design tokens -------------------------------------------------------
+--ink: #{$ink-light};
+--ink-muted: #{$ink-muted-light};
+--bg: #{$bg-light};
+--rule: #{$rule-light};
+--accent: #{$accent-light};
 
-  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+--font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+--font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 
-  --s1: 0.25rem;
-  --s2: 0.5rem;
-  --s3: 0.75rem;
-  --s4: 1rem;
-  --s5: 1.5rem;
-  --s6: 2rem;
-  --s7: 3rem;
-  --s8: 4rem;
+--s1: 0.25rem;
+--s2: 0.5rem;
+--s3: 0.75rem;
+--s4: 1rem;
+--s5: 1.5rem;
+--s6: 2rem;
+--s7: 3rem;
+--s8: 4rem;
 
-  --content-width: 46rem;
+--content-width: 46rem;
 ```
 
 Then **replace** these existing `:root` lines (keep every other line as-is):
 
 ```scss
-  --global-bg-color: var(--bg);
-  --global-text-color: var(--ink);
-  --global-text-color-light: var(--ink-muted);
-  --global-theme-color: var(--accent);
-  --global-hover-color: var(--accent);
-  --global-footer-bg-color: transparent;
-  --global-footer-text-color: var(--ink-muted);
-  --global-footer-link-color: var(--ink);
-  --global-divider-color: var(--rule);
-  --global-card-bg-color: var(--bg);
-  --global-code-bg-color: rgba(0, 0, 0, 0.04);
+--global-bg-color: var(--bg);
+--global-text-color: var(--ink);
+--global-text-color-light: var(--ink-muted);
+--global-theme-color: var(--accent);
+--global-hover-color: var(--accent);
+--global-footer-bg-color: transparent;
+--global-footer-text-color: var(--ink-muted);
+--global-footer-link-color: var(--ink);
+--global-divider-color: var(--rule);
+--global-card-bg-color: var(--bg);
+--global-code-bg-color: rgba(0, 0, 0, 0.04);
 ```
 
 In the `html[data-theme="dark"]` block, insert after the opening brace:
 
 ```scss
-  --ink: #{$ink-dark};
-  --ink-muted: #{$ink-muted-dark};
-  --bg: #{$bg-dark};
-  --rule: #{$rule-dark};
-  --accent: #{$accent-dark};
+--ink: #{$ink-dark};
+--ink-muted: #{$ink-muted-dark};
+--bg: #{$bg-dark};
+--rule: #{$rule-dark};
+--accent: #{$accent-dark};
 ```
 
 and **replace** these dark lines:
 
 ```scss
-  --global-bg-color: var(--bg);
-  --global-text-color: var(--ink);
-  --global-text-color-light: var(--ink-muted);
-  --global-theme-color: var(--accent);
-  --global-hover-color: var(--accent);
-  --global-footer-bg-color: transparent;
-  --global-footer-text-color: var(--ink-muted);
-  --global-footer-link-color: var(--ink);
-  --global-divider-color: var(--rule);
-  --global-card-bg-color: var(--bg);
-  --global-code-bg-color: rgba(255, 255, 255, 0.06);
+--global-bg-color: var(--bg);
+--global-text-color: var(--ink);
+--global-text-color-light: var(--ink-muted);
+--global-theme-color: var(--accent);
+--global-hover-color: var(--accent);
+--global-footer-bg-color: transparent;
+--global-footer-text-color: var(--ink-muted);
+--global-footer-link-color: var(--ink);
+--global-divider-color: var(--rule);
+--global-card-bg-color: var(--bg);
+--global-code-bg-color: rgba(255, 255, 255, 0.06);
 ```
 
 Note: `--global-theme-color` was `$purple-color` (`#b509ac`). Remapping it is what removes the magenta everywhere at once.
@@ -474,6 +466,7 @@ shoot t2_home / 1440 2400
 ```
 
 Read `$SHOTS/t2_home.png`. Assertions:
+
 - **No magenta anywhere.** Links are deep slate-blue `#1F5673`.
 - Background is warm off-white, not pure white.
 - Headings render in a serif face; body in Inter.
@@ -492,10 +485,12 @@ git commit -m "feat: add design token layer, remap theme variables, self-host fo
 ### Task 3: Container and measure
 
 **Files:**
+
 - Modify: `_sass/_layout.scss:30-39`
 - Modify: `_sass/_site.scss`
 
 **Interfaces:**
+
 - Consumes: `--content-width`, `--s*` from Task 2.
 - Produces: a `.container` capped at `--content-width`; `.post` prose capped at `68ch`.
 
@@ -559,6 +554,7 @@ shoot t3_pubs /publications/ 1440 2600
 ```
 
 Read all three. Assertions:
+
 - Content column is ~736px wide and centered at 1440px.
 - **No horizontal overflow at 390px** — no content clipped at the right edge, no horizontal scrollbar artifact.
 - News rows are under 80 characters per line.
@@ -579,11 +575,13 @@ git commit -m "feat: cap container to 46rem and prose to 68ch, drop floated prof
 Replaces the float-wrap with a flex header block, and adds the contact icon row.
 
 **Files:**
+
 - Modify: `_layouts/about.liquid` (full rewrite)
 - Modify: `_pages/about.md`
 - Modify: `_sass/_site.scss`
 
 **Interfaces:**
+
 - Consumes: tokens from Task 2, container from Task 3.
 - Produces: `.masthead`, `.masthead-photo`, `.masthead-body`, `.masthead-name`, `.masthead-role`, `.masthead-links` — all consumed by nothing later, but the `.section-head` class it introduces is styled in Task 5.
 
@@ -595,7 +593,6 @@ Replace the entire file with:
 ---
 layout: default
 ---
-
 <div class="post">
   <article>
     <div class="masthead">
@@ -612,7 +609,9 @@ layout: default
       <div class="masthead-body">
         <h1 class="masthead-name">
           {% if site.title == 'blank' %}
-            {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}
+            {{ site.first_name }}
+            {{ site.middle_name }}
+            {{ site.last_name }}
           {% else %}
             {{ site.title }}
           {% endif %}
@@ -830,6 +829,7 @@ shoot t4_home_m / 390 2800
 ```
 
 Read both. Assertions:
+
 - Photo is a 128×128 rounded square at top-left, name and role to its right, five icons beneath the role.
 - **No text wraps around the photo anywhere.** Every paragraph starts at the same left edge.
 - All five section headings ("About", "Research", "News", "Latest Posts", "Selected Publications") render at the same size with a hairline rule beneath.
@@ -852,11 +852,13 @@ git commit -m "feat: replace floated profile with masthead header block"
 Replaces the Bootstrap `<table>` markup with a CSS grid.
 
 **Files:**
+
 - Modify: `_includes/news.liquid`
 - Modify: `_includes/latest_posts.liquid`
 - Modify: `_sass/_site.scss`
 
 **Interfaces:**
+
 - Consumes: `.section-head` from Task 4.
 - Produces: `.entry-list`, `.entry-date`, `.entry-body` — reused by nothing later.
 
@@ -993,6 +995,7 @@ shoot t5_news /news/ 1440 1800
 ```
 
 Read all three. Assertions:
+
 - News dates form a clean left column; all dates left-aligned with each other.
 - No inner scrollbar on the news block.
 - News body text is under 80 characters per line.
@@ -1012,11 +1015,13 @@ git commit -m "feat: replace news and posts tables with a CSS grid"
 ### Task 6: Publications
 
 **Files:**
+
 - Modify: `_layouts/bib.liquid:3,48` (grid wrapper classes)
 - Modify: `_sass/_base.scss:659-871` (the `.publications` block)
 - Modify: `_sass/_site.scss`
 
 **Interfaces:**
+
 - Consumes: tokens from Task 2.
 - Produces: `.pub-entry`, `.pub-thumb`, `.pub-body` used on both the homepage and `/publications/`.
 
@@ -1194,6 +1199,7 @@ shoot t6_pubs_m /publications/ 390 3600
 ```
 
 Read all three from Steps 5–6. Assertions:
+
 - **Every thumbnail is exactly the same rendered size**, 3:2, with a hairline border.
 - The left rail of thumbnails is perfectly even down the page.
 - `ARXIV` outlined boxes are gone; links are plain accent text.
@@ -1214,11 +1220,13 @@ git commit -m "feat: normalize publication entries to a fixed-thumbnail grid"
 ### Task 7: Navbar, footer, captions
 
 **Files:**
+
 - Modify: `_sass/_base.scss:246-268` (`.navbar`), `:438-471` (`footer`), `:160-168` (`.caption`)
 - Modify: `_includes/footer.liquid`
 - Modify: `_sass/_site.scss`
 
 **Interfaces:**
+
 - Consumes: tokens from Task 2.
 
 - [ ] **Step 1: Read the blocks you are about to change**
@@ -1313,6 +1321,7 @@ footer.sticky-bottom {
 - [ ] **Step 4: Delete the conflicting old rules**
 
 In `_sass/_base.scss`:
+
 - In the `.caption` block at line 160, delete the `font-family: monospace;` line (line 201 is inside a different block — confirm with the `sed` output from Step 1 which line belongs to `.caption`) and any `text-align: center`.
 - In `footer.sticky-bottom` at line 459, delete `background-color` and any `color` declarations so the new layer is not fighting them.
 - Delete the entire `footer.fixed-bottom` block at line 438 — the markup that used it is gone.
@@ -1327,6 +1336,7 @@ shoot t7_dark  / 1440 2400 dark
 ```
 
 Read all three. Assertions:
+
 - Navbar is off-white with a hairline bottom rule, no shadow, no magenta.
 - Active nav item is ink with a 2px underline; others are muted.
 - Footer is a hairline rule with muted small text — **the black bar is gone**.
@@ -1346,10 +1356,12 @@ git commit -m "feat: flatten navbar and footer chrome, fix caption typography"
 ### Task 8: Misc photo grid
 
 **Files:**
+
 - Modify: `_pages/misc.md` (full rewrite of the body)
 - Modify: `_sass/_site.scss`
 
 **Interfaces:**
+
 - Consumes: tokens from Task 2.
 - Produces: `.photo-grid`, `.photo-group`, `.photo-group-caption`.
 
@@ -1463,6 +1475,7 @@ shoot t8_misc_m /misc/ 390 5200
 ```
 
 Read both. Assertions:
+
 - All tiles are identical size, 3:2, in an even grid.
 - The single-photo group (grab attempt) renders as one tile at grid-column width, not stretched full-bleed.
 - Group captions sit above their cluster, muted.
@@ -1482,10 +1495,12 @@ git commit -m "feat: rebuild misc page as a uniform photo grid"
 ### Task 9: Blog pages and full verification sweep
 
 **Files:**
+
 - Modify: `_sass/_base.scss:524-610` (`.tag-category-list`, `.post-title`, `.post-list`, `.pagination`)
 - Modify: `_sass/_site.scss`
 
 **Interfaces:**
+
 - Consumes: everything prior. Produces the final verified state.
 
 - [ ] **Step 1: Read the blog-related blocks**
@@ -1594,18 +1609,18 @@ ls _site/blog/2026/
 
 **Read every single screenshot.** For each, check:
 
-| # | Assertion |
-| --- | --- |
-| 1 | No horizontal overflow at 390px |
-| 2 | No magenta anywhere |
-| 3 | Section gaps equal down the homepage |
-| 4 | All publication thumbnails identical size |
-| 5 | News rows under 80 characters per line |
-| 6 | Footer is a hairline, not a bar, on every page |
-| 7 | Navbar active state correct on each page |
-| 8 | Dark mode legible; no inverted light blocks |
-| 9 | Math renders correctly in the blog post (MathJax untouched) |
-| 10 | No orphaned whitespace where deleted elements used to be |
+| #   | Assertion                                                   |
+| --- | ----------------------------------------------------------- |
+| 1   | No horizontal overflow at 390px                             |
+| 2   | No magenta anywhere                                         |
+| 3   | Section gaps equal down the homepage                        |
+| 4   | All publication thumbnails identical size                   |
+| 5   | News rows under 80 characters per line                      |
+| 6   | Footer is a hairline, not a bar, on every page              |
+| 7   | Navbar active state correct on each page                    |
+| 8   | Dark mode legible; no inverted light blocks                 |
+| 9   | Math renders correctly in the blog post (MathJax untouched) |
+| 10  | No orphaned whitespace where deleted elements used to be    |
 
 - [ ] **Step 5: Check the production build path**
 
