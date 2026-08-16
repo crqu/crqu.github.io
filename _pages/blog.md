@@ -9,19 +9,16 @@ pagination:
   enabled: true
 ---
 
-{% assign blog_name_size = site.blog_name | size %}
-{% assign blog_description_size = site.blog_description | size %}
+{% comment %}
+The page title/description come from this file's front matter and are rendered by
+`layout: page`. Do not repeat them here.
+{% endcomment %}
 
-{% if blog_name_size > 0 or blog_description_size > 0 %}
-  {% if blog_name_size > 0 %}
-    <h1>{{ site.blog_name }}</h1>
-  {% endif %}
-  {% if blog_description_size > 0 %}
-    <p>{{ site.blog_description }}</p>
-  {% endif %}
-{% endif %}
+{% assign tag_count = site.display_tags | size %}
+{% assign category_count = site.display_categories | size %}
 
-{% if site.display_tags or site.display_categories %}
+{% if tag_count > 0 or category_count > 0 %}
+
   <div class="tag-category-list">
     <ul class="p-0 m-0">
       {% for tag in site.display_tags %}
@@ -29,7 +26,7 @@ pagination:
           <i class="fa-solid fa-hashtag fa-sm"></i> <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">{{ tag }}</a>
         </li>
       {% endfor %}
-      {% if site.display_categories.size > 0 and site.display_tags.size > 0 %}
+      {% if tag_count > 0 and category_count > 0 %}
         <li>&nbsp;&middot;&nbsp;</li>
       {% endif %}
       {% for category in site.display_categories %}
