@@ -63,3 +63,12 @@ code,
 pre {
   font-family: var(--font-mono);
 }
+
+.post > article > p,
+.post > article > ul,
+.post > article > ol,
+.post > article > .clearfix > p,
+.post > article > .clearfix > ul,
+.post > article > .clearfix > ol {
+  max-width: 68ch;
+}

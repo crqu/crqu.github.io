@@ -28,14 +28,7 @@ body.sticky-bottom-footer {
 }
 
 .container {
-  max-width: $max-content-width;
-}
-
-// Profile
-.profile {
-  img {
-    width: 100%;
-  }
+  max-width: var(--content-width);
 }
 
 // TODO: redefine content layout.
