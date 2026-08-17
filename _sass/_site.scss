@@ -154,3 +154,41 @@ pre {
     }
   }
 }
+
+.entry-list {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  column-gap: var(--s5);
+  row-gap: var(--s4);
+  align-items: baseline;
+}
+
+.entry-date {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.entry-body {
+  max-width: 68ch;
+
+  p {
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .entry-list {
+    grid-template-columns: 1fr;
+    row-gap: var(--s2);
+  }
+
+  .entry-date {
+    margin-top: var(--s3);
+  }
+
+  .entry-body {
+    margin-bottom: var(--s2);
+  }
+}
