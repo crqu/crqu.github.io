@@ -398,11 +398,6 @@ ul.task-list input[type="checkbox"] {
 
 // Footer
 footer.sticky-bottom {
-  border-top: 1px solid var(--global-divider-color);
-  padding-top: 40px;
-  padding-bottom: 40px;
-  font-size: 0.9rem;
-
   .container {
     text-align: center;
   }
@@ -589,8 +584,6 @@ footer.sticky-bottom {
 // Publications
 
 .publications {
-  margin-top: 2rem;
-
   ol.bibliography {
     list-style: none;
     padding: 0;
