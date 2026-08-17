@@ -358,7 +358,7 @@ footer.sticky-bottom {
 
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--s4);
 
   figure {
@@ -371,5 +371,11 @@ footer.sticky-bottom {
     object-fit: cover;
     border-radius: 4px;
     display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
   }
 }
