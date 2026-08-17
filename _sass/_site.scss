@@ -345,3 +345,31 @@ footer.sticky-bottom {
   margin-top: var(--s2);
   text-align: left;
 }
+
+.photo-group {
+  margin-top: var(--s7);
+}
+
+.photo-group-caption {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  margin-bottom: var(--s3);
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s4);
+
+  figure {
+    margin: 0;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+}
