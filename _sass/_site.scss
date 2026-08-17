@@ -196,6 +196,15 @@ pre {
 .publications {
   margin-top: 0;
 
+  h2.bibliography {
+    text-align: left;
+    font-family: var(--font-serif);
+    margin-top: var(--s7);
+    margin-bottom: var(--s4);
+    padding-bottom: var(--s2);
+    border-bottom: 1px solid var(--rule);
+  }
+
   ol.bibliography {
     list-style: none;
     padding: 0;
@@ -264,6 +273,7 @@ pre {
       font-size: 0.875rem;
       color: var(--accent);
       border: none;
+      margin: 0;
       padding: 0;
       background: none;
       text-transform: none;
