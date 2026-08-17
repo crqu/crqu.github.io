@@ -1,23 +1,9 @@
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400 600;
   font-display: swap;
-  src: url("../fonts/inter-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("../fonts/inter-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("../fonts/inter-600.woff2") format("woff2");
+  src: url("../fonts/inter.woff2") format("woff2");
 }
 @font-face {
   font-family: "Newsreader";
@@ -377,5 +363,67 @@ footer.sticky-bottom {
 @media (max-width: 600px) {
   .photo-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  > li {
+    margin-bottom: var(--s6);
+    padding-bottom: var(--s6);
+    border-bottom: 1px solid var(--rule);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 1.375rem;
+      margin: 0 0 var(--s2);
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  .post-meta {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 var(--s2);
+  }
+
+  .post-description {
+    color: var(--ink-muted);
+    max-width: 68ch;
+    margin: 0;
+  }
+
+  a.post-title {
+    color: var(--ink);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
+.post .post-header {
+  margin-bottom: var(--s7);
+
+  .post-title {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+
+  .post-meta,
+  .post-tags {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
   }
 }

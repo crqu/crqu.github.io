@@ -499,25 +499,16 @@ footer.sticky-bottom {
     padding-bottom: 2rem;
 
     .post-meta {
-      color: var(--global-text-color-light);
-      font-size: 0.875rem;
       margin-bottom: 0;
     }
 
     .post-tags {
-      color: var(--global-text-color-light);
-      font-size: 0.875rem;
       padding-top: 0.25rem;
       padding-bottom: 0;
     }
 
     a {
-      color: var(--global-text-color);
       text-decoration: none;
-
-      &:hover {
-        color: var(--global-theme-color);
-      }
     }
 
     mjx-container[jax="CHTML"][display="true"] {
@@ -789,7 +780,7 @@ progress {
   background-color: transparent;
 
   /* Progress bar value for IE10  */
-  color: var(--global-theme-color);
+  color: var(--ink);
 }
 
 progress::-webkit-progress-bar {
@@ -797,11 +788,11 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background-color: var(--global-theme-color);
+  background-color: var(--ink);
 }
 
 progress::-moz-progress-bar {
-  background-color: var(--global-theme-color);
+  background-color: var(--ink);
 }
 
 .progress-container {
@@ -815,7 +806,7 @@ progress::-moz-progress-bar {
 }
 
 .progress-bar {
-  background-color: var(--global-theme-color);
+  background-color: var(--ink);
   width: 0%;
   display: block;
   height: inherit;
