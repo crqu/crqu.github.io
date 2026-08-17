@@ -216,11 +216,13 @@ kramdown:
       start_line: 1
 
 # Includes & excludes
-include: ["_pages"]
+include: ["_pages", ".nojekyll"]
 exclude:
   - bin/
+  - CLAUDE.md
   - CONTRIBUTING.md
   - CUSTOMIZE.md
+  - docs/
   - Dockerfile
   - docker-compose.yml
   - docker-compose-slim.yml
