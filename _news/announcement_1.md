@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Happy to share that I received  NSFC 1st Youth Student Basic Research Grant!
+Happy to share that I received NSFC 1st Youth Student Basic Research Grant!

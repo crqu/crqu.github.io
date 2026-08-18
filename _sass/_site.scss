@@ -102,7 +102,9 @@ pre {
   a {
     color: var(--ink-muted);
     text-decoration: none;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
     display: inline-block;
 
     &:hover {
@@ -247,7 +249,9 @@ pre {
   align-items: start;
   padding: var(--s3);
   border-radius: 6px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);
@@ -520,7 +524,9 @@ footer.sticky-bottom {
 .reveal {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
 }
 
 .reveal.visible {

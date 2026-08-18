@@ -49,4 +49,20 @@ jobs:
         with:
           fail: true
           # removed md files that include liquid tags
-          args: --user-agent 'curl/7.54' --exclude-path README.md --exclude-path _pages/404.md --exclude-path _pages/blog.md --exclude-path _posts/2018-12-22-distill.md --exclude-path _posts/2023-04-24-videos.md --verbose --no-progress './**/*.md' './**/*.html'
+          args: >-
+            --user-agent 'curl/7.54'
+            --exclude-path README.md
+            --exclude-path _pages/404.md
+            --exclude-path _pages/blog.md
+            --exclude-path _posts/2018-12-22-distill.md
+            --exclude-path _posts/2023-04-24-videos.md
+            --exclude-path 'assets/html/*'
+            --exclude 'https?://fonts\.googleapis\.com'
+            --exclude 'https?://fonts\.gstatic\.com'
+            --exclude 'https?://.*\.cms\.caltech\.edu'
+            --exclude 'https?://rsrg\.cms\.caltech\.edu'
+            --exclude 'https?://ui\.adsabs\.harvard\.edu'
+            --exclude 'https?://energy-markets-school\.dk'
+            --exclude 'https?://www\.weco\.ai'
+            --exclude 'https?://www\.akashsrivastava\.me'
+            --verbose --no-progress './**/*.md' './**/*.html'

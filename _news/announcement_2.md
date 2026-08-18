@@ -6,5 +6,3 @@ related_posts: false
 ---
 
 Honored to announce that I won the National Scholarship (<b>top 0.3%</b> among all undergrads)!
-
-

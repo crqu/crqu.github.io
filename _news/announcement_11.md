@@ -5,6 +5,5 @@ inline: true
 related_posts: false
 ---
 
-
 Our work "SPiDR: A Simple Approach for Zero-Shot Safety in
 Sim-to-Real Transfer" is accepted to NeuIPS 2025! Thanks to my wonderful collaborators!
