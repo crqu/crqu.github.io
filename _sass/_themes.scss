@@ -9,6 +9,7 @@
   --bg: #{$bg-light};
   --rule: #{$rule-light};
   --accent: #{$accent-light};
+  --accent-glow: #{$accent-glow-light};
 
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -95,6 +96,7 @@ html[data-theme="dark"] {
   --bg: #{$bg-dark};
   --rule: #{$rule-dark};
   --accent: #{$accent-dark};
+  --accent-glow: #{$accent-glow-dark};
 
   --global-bg-color: var(--bg);
   --global-code-bg-color: rgba(255, 255, 255, 0.06);

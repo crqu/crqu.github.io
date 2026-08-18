@@ -65,13 +65,13 @@ pre {
 }
 
 .masthead-photo {
-  flex: 0 0 128px;
-  width: 128px;
+  flex: 0 0 180px;
+  width: 180px;
 }
 
 .masthead-img {
-  width: 128px;
-  height: 128px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
   border-radius: 8px;
   display: block;
@@ -102,9 +102,12 @@ pre {
   a {
     color: var(--ink-muted);
     text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
 
     &:hover {
       color: var(--accent);
+      transform: scale(1.15);
     }
   }
 }
@@ -125,10 +128,23 @@ pre {
   font-size: 1.625rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: none;
   padding-bottom: var(--s2);
   margin-top: var(--s8);
   margin-bottom: var(--s4);
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-glow), var(--accent));
+    background-size: 200% 100%;
+    animation: gradient-flow 6s ease infinite;
+  }
 
   a {
     color: inherit;
@@ -137,6 +153,16 @@ pre {
     &:hover {
       color: var(--accent);
     }
+  }
+}
+
+@keyframes gradient-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 
@@ -187,7 +213,20 @@ pre {
     margin-top: var(--s7);
     margin-bottom: var(--s4);
     padding-bottom: var(--s2);
-    border-bottom: 1px solid var(--rule);
+    border-bottom: none;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-glow), var(--accent));
+      background-size: 200% 100%;
+      animation: gradient-flow 6s ease infinite;
+    }
   }
 
   ol.bibliography {
@@ -203,21 +242,35 @@ pre {
 
 .pub-entry {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 140px 1fr;
   gap: var(--s5);
   align-items: start;
+  padding: var(--s3);
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  &:hover .pub-thumb img,
+  &:hover .pub-thumb .preview {
+    transform: scale(1.03);
+  }
 }
 
 .pub-thumb {
   img,
   .preview {
     width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     border: 1px solid var(--rule);
     border-radius: 4px;
     display: block;
     background-color: var(--bg);
+    transition: transform 0.2s ease;
   }
 
   abbr {
@@ -272,7 +325,7 @@ pre {
 
 @media (max-width: 600px) {
   .pub-entry {
-    grid-template-columns: 88px 1fr;
+    grid-template-columns: 100px 1fr;
     gap: var(--s4);
   }
 }
@@ -424,5 +477,116 @@ footer.sticky-bottom {
   .post-tags {
     font-size: 0.875rem;
     color: var(--ink-muted);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Masthead entrance animation
+// ---------------------------------------------------------------------------
+
+.masthead-photo,
+.masthead-name,
+.masthead-role,
+.masthead-links {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: masthead-enter 0.5s ease forwards;
+}
+
+.masthead-photo {
+  animation-delay: 0s;
+}
+.masthead-name {
+  animation-delay: 0.08s;
+}
+.masthead-role {
+  animation-delay: 0.16s;
+}
+.masthead-links {
+  animation-delay: 0.24s;
+}
+
+@keyframes masthead-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Scroll-triggered reveal
+// ---------------------------------------------------------------------------
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// ---------------------------------------------------------------------------
+// Progress bar gradient
+// ---------------------------------------------------------------------------
+
+progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--accent), var(--accent-glow));
+}
+
+progress::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--accent), var(--accent-glow));
+}
+
+// ---------------------------------------------------------------------------
+// Dark mode: slightly stronger hover shadow
+// ---------------------------------------------------------------------------
+
+html[data-theme="dark"] .pub-entry:hover {
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.04);
+}
+
+// ---------------------------------------------------------------------------
+// Reduced motion: disable all animations
+// ---------------------------------------------------------------------------
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead-photo,
+  .masthead-name,
+  .masthead-role,
+  .masthead-links {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pub-entry {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .pub-thumb img,
+  .pub-thumb .preview {
+    transition: none;
+  }
+
+  .post > article > h2.section-head::after,
+  .publications h2.bibliography::after {
+    animation: none;
+  }
+
+  .masthead-links a {
+    transition: none;
   }
 }
