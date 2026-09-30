@@ -24,4 +24,4 @@ I am a first-year PhD student in the [Caltech Rigorous Systems Research Group](h
 
 {: .section-head}
 
-My research interests lie at the intersection of theoretical foundations for sequential decision-making, multi-agent systems, and the reasoning abilities of large language models, with a strong interest in real-world impact and practical applications. I'm always happy to connect — feel free to reach out if you'd like to discuss research, collaborations, or entrepreneurial opportunities.
+My research develops theoretical and algorithmic foundations for **multi-agent alignment**, ensuring AI agents, including LLMs, can reliably cooperate with each other and with people. I approach this through the lens of game theory and robust decision-making, building agents that generalize to novel partners and environments rather than overfitting to training-time conventions. I'm always happy to connect; feel free to reach out if you'd like to discuss research, collaborations, or entrepreneurial opportunities.
