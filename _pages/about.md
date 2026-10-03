@@ -18,7 +18,7 @@ social: false # includes social icons at the bottom of the page
 
 {: .section-head}
 
-I am a first-year PhD student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) and [Prof. Eric Mazumdar](https://users.cms.caltech.edu/~mazumdar/) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). Most people call me Ray. Before joining Caltech, I obtained my B.Sc. degree at Peking University.
+I am a second-year PhD student in the [Caltech Rigorous Systems Research Group](http://rsrg.cms.caltech.edu), advised by [Prof. Adam Wierman](https://adamwierman.com) and [Prof. Eric Mazumdar](https://users.cms.caltech.edu/~mazumdar/) at the [Computing + Mathematical Sciences (CMS) Department](https://www.cms.caltech.edu), [California Institute of Technology](https://www.caltech.edu). Most people call me Ray. Before joining Caltech, I obtained my B.Sc. degree at Peking University.
 
 ## Research
 
