@@ -158,6 +158,23 @@ pre {
   }
 }
 
+h3.direction-head {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-top: var(--s6);
+  margin-bottom: var(--s1);
+}
+
+p.direction-desc {
+  font-size: 0.925rem;
+  color: var(--ink-muted);
+  line-height: 1.55;
+  margin-bottom: var(--s3);
+}
+
 @keyframes gradient-flow {
   0%,
   100% {

@@ -1,3 +1,23 @@
+<h3 class="direction-head">Behaviorally-Grounded AI Agents</h3>
+<p class="direction-desc">
+  Incorporating insights from behavioral economics and game theory into agent training in a principled way, enabling AI agents (including LLMs) to robustly cooperate with novel partners.
+</p>
 <div class="publications">
-  {% bibliography --group_by none --query @*[selected=true]* %}
+  {% bibliography --group_by none --query @*[selected=true,direction=behavioral]* %}
+</div>
+
+<h3 class="direction-head">Generalizable Multi-Agent Cooperation</h3>
+<p class="direction-desc">
+  Building cooperative multi-agent systems that generalize to novel environments and scale gracefully through robust value factorization, diversity-driven scaling, and knowledge-centric self-improvement.
+</p>
+<div class="publications">
+  {% bibliography --group_by none --query @*[selected=true,direction=cooperation]* %}
+</div>
+
+<h3 class="direction-head">Learning & Optimization under Distribution Shift</h3>
+<p class="direction-desc">
+  Making reinforcement learning and optimization provably robust when training and deployment conditions diverge, whether through dynamics mismatch, sim-to-real gaps, or distributional uncertainty.
+</p>
+<div class="publications">
+  {% bibliography --group_by none --query @*[selected=true,direction=shift]* %}
 </div>
